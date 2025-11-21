@@ -1,9 +1,13 @@
 import React, { useState, useRef, useEffect, ReactNode } from 'react';
 import styles from './Dropdown.module.css';
 
+type DropdownContent =
+  | ReactNode
+  | ((onCloseDropdown: () => void) => ReactNode);
+
 interface DropdownProps {
   trigger: ReactNode; // Триггер (кнопка/иконка/др.)
-  content: ReactNode; // Содержимое выпадающего меню
+  content: DropdownContent; // Содержимое выпадающего меню
 }
 
 export const Dropdown = ({ trigger, content }: DropdownProps) => {
@@ -16,7 +20,47 @@ export const Dropdown = ({ trigger, content }: DropdownProps) => {
   const triggerRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
-  // Закрываем при клике вне меню
+  // Функция для расчёта позиции выпадающего меню относительно триггера
+  const calculatePosition = () => {
+    if (!triggerRef.current) return;
+
+    const triggerRect = triggerRef.current.getBoundingClientRect();
+    const windowWidth = window.innerWidth;
+    const windowHeight = window.innerHeight;
+    // Корректировка позиции, если меню выходит за границы окна
+    const menuWidth = 152; // Предполагаемая ширина меню
+    const menuHeight = 65; // Предполагаемая высота меню
+
+    // Базовая позиция: справа снизу от триггера
+    const left =
+      windowWidth - triggerRect.right >= triggerRect.left
+        ? triggerRect.right
+        : triggerRect.left - menuWidth;
+    const top =
+      windowHeight - triggerRect.bottom >= triggerRect.top
+        ? triggerRect.bottom
+        : triggerRect.top - menuHeight;
+
+    setPosition({ left, top });
+  };
+
+  // Пересчитываем позицию при открытии меню и при изменении размеров окна
+  useEffect(() => {
+    if (isOpen) {
+      calculatePosition();
+
+      // Добавляем обработчики для пересчёта при изменении размеров окна
+      window.addEventListener('resize', calculatePosition);
+      window.addEventListener('scroll', calculatePosition);
+
+      return () => {
+        window.removeEventListener('resize', calculatePosition);
+        window.removeEventListener('scroll', calculatePosition);
+      };
+    }
+  }, [isOpen]);
+
+  // Закрываем меню при клике вне его области
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
       if (
@@ -38,28 +82,22 @@ export const Dropdown = ({ trigger, content }: DropdownProps) => {
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, [isOpen]);
 
-  // Рассчитываем позицию при открытии
-  const openMenu = () => {
+  // Открытие/закрытие меню
+  const toggleMenu = () => {
     if (!triggerRef.current) return;
 
-    const triggerRect = triggerRef.current.getBoundingClientRect();
-    const windowWidth = window.innerWidth;
-    const windowHeight = window.innerHeight;
+    setIsOpen((prev) => !prev);
+  };
 
-    let left = triggerRect.right;
-    let top = triggerRect.bottom;
-
-    // Корректируем, написать логику выбора стороны открытия
-
-    setPosition({ left, top });
-    setIsOpen(true);
+  const closeDropdown = () => {
+    setIsOpen(false);
   };
 
   return (
     <div className={styles.dropdownMenu}>
       <div
         ref={triggerRef}
-        onClick={openMenu}
+        onClick={toggleMenu}
         className={styles.dropdownTrigger}
       >
         {trigger}
@@ -74,7 +112,9 @@ export const Dropdown = ({ trigger, content }: DropdownProps) => {
             top: `${position.top}px`,
           }}
         >
-          {content}
+          {typeof content === 'function'
+            ? content(closeDropdown)
+            : content}
         </div>
       )}
     </div>
