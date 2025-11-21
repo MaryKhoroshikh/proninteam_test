@@ -6,7 +6,6 @@
   cursor: pointer;
   /* Здесь можно задать стили для триггера (например, кнопка) */
   position: relative;
-
 }
 
 .dropdownContent {

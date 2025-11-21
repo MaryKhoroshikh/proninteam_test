@@ -9,17 +9,17 @@ const App: React.FC = () => {
   const [image, setImage] = useState<string>(data.images[0].itemMeaning);
   const [font, setFont] = useState<string>(data.fonts[0].itemMeaning);
   const [isReverse, setIsReverse] = useState<boolean>(false);
-  
+
   return (
     <>
-      <div className={`${styles.app} ${isReverse? styles.reverse : ''}`}>
+      <div className={`${styles.app} ${isReverse ? styles.reverse : ''}`}>
         <h1 className={`${styles[font]} ${styles.title}`}>
           Тестируем работу компонента Dropdown
         </h1>
         <div className={styles.triggers}>
           <Dropdown
             trigger={<button>Время</button>}
-            content={(onCloseDropdown) => (
+            content={onCloseDropdown => (
               <ItemsList
                 items={data.quotes}
                 onItemClick={setQuote}
@@ -29,7 +29,7 @@ const App: React.FC = () => {
           />
           <Dropdown
             trigger={<button>Место</button>}
-            content={(onCloseDropdown) => (
+            content={onCloseDropdown => (
               <ItemsList
                 items={data.images}
                 onItemClick={setImage}
@@ -39,7 +39,7 @@ const App: React.FC = () => {
           />
           <Dropdown
             trigger={<button>Стиль</button>}
-            content={(onCloseDropdown) => (
+            content={onCloseDropdown => (
               <ItemsList
                 items={data.fonts}
                 onItemClick={setFont}
@@ -50,15 +50,18 @@ const App: React.FC = () => {
         </div>
         <div className={styles.content}>
           <img className={styles.image} src={image} />
-          <h2 className={`${styles[font]} ${styles.text}`}>
-            {quote}
-          </h2>
+          <h2 className={`${styles[font]} ${styles.text}`}>{quote}</h2>
         </div>
-        <button className={styles.button} type='button' onClick={() => setIsReverse(!isReverse)}>Перевернуть</button>
+        <button
+          className={styles.button}
+          type='button'
+          onClick={() => setIsReverse(!isReverse)}
+        >
+          Перевернуть
+        </button>
       </div>
       <div className={styles.empty}></div>
     </>
-    
   );
 };
 

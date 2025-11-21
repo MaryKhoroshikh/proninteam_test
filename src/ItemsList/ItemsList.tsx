@@ -12,7 +12,11 @@ interface ItemsListProps {
   onCloseDropdown?: () => void;
 }
 
-const ItemsList: React.FC<ItemsListProps> = ({ items, onItemClick, onCloseDropdown }) => {
+const ItemsList: React.FC<ItemsListProps> = ({
+  items,
+  onItemClick,
+  onCloseDropdown,
+}) => {
   return (
     <ul className={styles.list}>
       {items.length > 0 ? (

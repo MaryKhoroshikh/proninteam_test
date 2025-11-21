@@ -22,5 +22,6 @@
       ]
     }
   },
-  "include": ["src/**/*", "src/types/global.d.ts"]
+  "include": ["src/**/*", "src/types/global.d.ts"],
+  "exclude": ["node_modules", "dist", "**/*.spec.ts", "**/*.test.ts"]
 }

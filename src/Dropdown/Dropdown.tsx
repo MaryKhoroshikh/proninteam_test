@@ -1,9 +1,7 @@
 import React, { useState, useRef, useEffect, ReactNode } from 'react';
 import styles from './Dropdown.module.css';
 
-type DropdownContent =
-  | ReactNode
-  | ((onCloseDropdown: () => void) => ReactNode);
+type DropdownContent = ReactNode | ((onCloseDropdown: () => void) => ReactNode);
 
 interface DropdownProps {
   trigger: ReactNode; // Триггер (кнопка/иконка/др.)
@@ -86,7 +84,7 @@ export const Dropdown = ({ trigger, content }: DropdownProps) => {
   const toggleMenu = () => {
     if (!triggerRef.current) return;
 
-    setIsOpen((prev) => !prev);
+    setIsOpen(prev => !prev);
   };
 
   const closeDropdown = () => {
@@ -112,9 +110,7 @@ export const Dropdown = ({ trigger, content }: DropdownProps) => {
             top: `${position.top}px`,
           }}
         >
-          {typeof content === 'function'
-            ? content(closeDropdown)
-            : content}
+          {typeof content === 'function' ? content(closeDropdown) : content}
         </div>
       )}
     </div>
