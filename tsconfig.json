@@ -14,10 +14,12 @@
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx",
+    "paths": {
+      "vite-plugin-eslint": [
+        "./node_modules/vite-plugin-eslint/dist/index.d.ts"
+      ]
+    }
   },
-  "include": [
-    "src/**/*",
-    "src/types/global.d.ts"
-  ]
+  "include": ["src/**/*", "src/types/global.d.ts"]
 }

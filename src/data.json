@@ -1,44 +1,44 @@
 {
-    "quotes": [
-        {
-            "itemTitle": "Утро",
-            "itemMeaning": "Доброе утро"
-        },
-        {
-            "itemTitle": "День",
-            "itemMeaning": "Добрый день"
-        },
-        {
-            "itemTitle": "Вечер",
-            "itemMeaning": "Добрый вечер"
-        }
-    ],
-    "images": [
-        {
-            "itemTitle": "Море",
-            "itemMeaning": "https://yaart-web-alice-images.s3.yandex.net/ef20fde6c63211f0bb34ba0335ae5acb:1"
-        },
-        {
-            "itemTitle": "Лес",
-            "itemMeaning": "https://yaart-web-alice-images.s3.yandex.net/802e427ac64f11f0803f820c80db2f69:4"
-        },
-        {
-            "itemTitle": "Поле",
-            "itemMeaning": "https://yaart-web-alice-images.s3.yandex.net/79e2137cc63311f095bb8e6ca79d7e12:3"
-        }
-    ],
-    "fonts": [
-        {
-            "itemTitle": "Классический",
-            "itemMeaning": "inter"
-        },
-        {
-            "itemTitle": "Пиксельный",
-            "itemMeaning": "pressStart"
-        },
-        {
-            "itemTitle": "Рукописный",
-            "itemMeaning": "caveat"
-        }
-    ]
+  "quotes": [
+    {
+      "itemTitle": "Утро",
+      "itemMeaning": "Доброе утро"
+    },
+    {
+      "itemTitle": "День",
+      "itemMeaning": "Добрый день"
+    },
+    {
+      "itemTitle": "Вечер",
+      "itemMeaning": "Добрый вечер"
+    }
+  ],
+  "images": [
+    {
+      "itemTitle": "Море",
+      "itemMeaning": "https://yaart-web-alice-images.s3.yandex.net/ef20fde6c63211f0bb34ba0335ae5acb:1"
+    },
+    {
+      "itemTitle": "Лес",
+      "itemMeaning": "https://yaart-web-alice-images.s3.yandex.net/802e427ac64f11f0803f820c80db2f69:4"
+    },
+    {
+      "itemTitle": "Поле",
+      "itemMeaning": "https://yaart-web-alice-images.s3.yandex.net/79e2137cc63311f095bb8e6ca79d7e12:3"
+    }
+  ],
+  "fonts": [
+    {
+      "itemTitle": "Классический",
+      "itemMeaning": "inter"
+    },
+    {
+      "itemTitle": "Пиксельный",
+      "itemMeaning": "pressStart"
+    },
+    {
+      "itemTitle": "Рукописный",
+      "itemMeaning": "caveat"
+    }
+  ]
 }

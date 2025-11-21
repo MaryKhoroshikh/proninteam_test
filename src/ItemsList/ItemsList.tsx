@@ -4,7 +4,7 @@ import styles from './ItemsList.module.css';
 type TMenuItem = {
   itemTitle: string;
   itemMeaning: string;
-}; 
+};
 
 interface ItemsListProps {
   items: TMenuItem[];
@@ -14,26 +14,26 @@ interface ItemsListProps {
 const ItemsList: React.FC<ItemsListProps> = ({ items, onItemClick }) => {
   return (
     <ul className={styles.list}>
-        {items.length > 0 ? (
-            items.map((item: TMenuItem, index: number) => (
-                <li
-                    key={`${item.itemTitle}-${index}`}
-                    className={styles.item}
-                    onClick={() => onItemClick(item.itemMeaning)}
-                    role="button"
-                    tabIndex={0}
-                    onKeyDown={(e) => {
-                        if (e.key === 'Enter') {
-                        onItemClick(item.itemMeaning);
-                        }
-                    }}
-                >
-                    {item.itemTitle}
-                </li>
-            ))
-        ) : (
+      {items.length > 0 ? (
+        items.map((item: TMenuItem, index: number) => (
+          <li
+            key={`${item.itemTitle}-${index}`}
+            className={styles.item}
+            onClick={() => onItemClick(item.itemMeaning)}
+            role='button'
+            tabIndex={0}
+            onKeyDown={e => {
+              if (e.key === 'Enter') {
+                onItemClick(item.itemMeaning);
+              }
+            }}
+          >
+            {item.itemTitle}
+          </li>
+        ))
+      ) : (
         <li className={styles.empty}>Нет элементов</li>
-        )}
+      )}
     </ul>
   );
 };

@@ -1,4 +1,4 @@
-import { useState, useRef, useEffect, ReactNode } from 'react';
+import React, { useState, useRef, useEffect, ReactNode } from 'react';
 import styles from './Dropdown.module.css';
 
 interface DropdownProps {
@@ -8,8 +8,11 @@ interface DropdownProps {
 
 export const Dropdown = ({ trigger, content }: DropdownProps) => {
   const [isOpen, setIsOpen] = useState(false);
-  const [position, setPosition] = useState<{ left: number; top: number }>({ left: 0, top: 0 });
-  
+  const [position, setPosition] = useState<{ left: number; top: number }>({
+    left: 0,
+    top: 0,
+  });
+
   const triggerRef = useRef<HTMLDivElement>(null);
   const menuRef = useRef<HTMLDivElement>(null);
 
@@ -54,7 +57,11 @@ export const Dropdown = ({ trigger, content }: DropdownProps) => {
 
   return (
     <div className={styles.dropdownMenu}>
-      <div ref={triggerRef} onClick={openMenu} className={styles.dropdownTrigger}>
+      <div
+        ref={triggerRef}
+        onClick={openMenu}
+        className={styles.dropdownTrigger}
+      >
         {trigger}
       </div>
 
